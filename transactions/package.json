@@ -1,0 +1,1 @@
+{"name":"taran-transactions","version":"1.0.0","private":true,"scripts":{"start":"node src/app.js","test":"node --test"},"dependencies":{"express":"^4.21.2","mongodb":"^6.12.0"}}
