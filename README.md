@@ -1,17 +1,77 @@
 # Pixel River Financial — Module 5 Part 3
-Student: Taranpreet Singh
 
-Services: NGINX gateway, static portfolio, Python Flask banking backend, Node.js transactions reporting, MongoDB.
+**Student:** Taranpreet Singh
 
-## Run
-`docker compose up -d --build --wait`
-Visit http://localhost:8081. Follow the banking link, register, log in, deposit, and withdraw.
-To view recorded transactions use `http://localhost:8081/api/transactions/your-email@example.com` after making transactions.
-Test invalid IDs at `http://localhost:8081/api/transactions/invalid-id` (expected HTTP 400).
-Check `docker compose exec nginx nginx -t` and `docker compose ps`.
+## Project Overview
 
-## CI
-Push this folder to your own GitHub repository on the main branch. `.github/workflows/ci.yml` runs Node tests, builds Docker images, validates NGINX and checks endpoints. Confirm the run is green in the Actions tab; capture your own screenshot. The workflow has not been executed by this package generator.
+This project uses Docker Compose to run five services:
+
+- NGINX gateway
+- Static student portfolio
+- Python Flask banking backend
+- Node.js transactions service
+- MongoDB database
+
+## How to Run
+
+Open a terminal in the Part 3 folder and run:
+
+docker compose up -d --build --wait
+
+Open http://localhost:8081 in your browser.
+
+Click the banking link, register an account, log in, deposit money and withdraw money.
+
+To view transactions, open:
+
+http://localhost:8081/api/transactions/your-email@example.com
+
+
+To test an invalid identifier:
+
+
+http://localhost:8081/api/transactions/invalid-id
+
+Expected result: HTTP 400.
+
+## Testing
+
+Check NGINX configuration:
+
+
+docker compose exec nginx nginx -t
+
+Check running containers:
+
+docker compose ps
+
+
+Run Node.js tests:
+
+cd transactions
+npm install
+npm test
+
+**Local test results:**
+- Tests passed: 1
+- Tests failed: 0
+
+## GitHub Actions CI
+
+The GitHub Actions workflow is configured in `.github/workflows/ci.yml`.
+
+It runs automated tests and project checks.
+
+The workflow completed successfully on the `main` branch.
+
+**GitHub Repository:**
+
+https://github.com/rrc-w2025-tsingh18/devops-module5-part3
 
 ## Notes
-Only NGINX publishes port 8081. MongoDB data persists in `mongo_data`. This is a learning demo, not production banking software. Transaction lookup by email is intentionally simplified and must not be exposed publicly without authentication and authorization. Add screenshots, personal test results and your own GitHub URL to the report before submitting.
+
+Only NGINX exposes port 8081.
+
+MongoDB data is stored in the `mongo_data` volume.
+
+This project is for learning purposes only and is not intended for real banking use. Transaction lookup by email would require authentication and authorization in a production application.
